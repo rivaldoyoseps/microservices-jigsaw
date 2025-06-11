@@ -1,4 +1,0 @@
-
-
-proto : 
-	protoc -Iapi/proto --go_out=api/proto_gen/bookingpb --go_opt=paths=source_relative --go-grpc_out=api/proto_gen/bookingpb --go-grpc_opt=paths=source_relative api/proto/*.proto
