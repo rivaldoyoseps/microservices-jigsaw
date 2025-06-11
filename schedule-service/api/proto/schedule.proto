@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package schedule;
+option go_package = "github.com/rivaldoyoseps/schedule-service/api/proto_gen/schedulepb";
+
+
+// Entity
+message Slot {
+  string id = 1;
+  string user_id = 2;
+  string start_time = 3;
+  string end_time = 4;
+  bool is_booked = 5;
+}
+
+// Request untuk create
+message CreateSlotRequest {
+  string user_id = 1;
+  string start_time = 2;
+  string end_time = 3;
+}
+
+// Request untuk get slot user
+message GetSlotsByUserRequest {
+  string user_id = 1;
+}
+
+// Response berisi daftar slot
+message GetSlotsResponse {
+  repeated Slot slots = 1;
+}
+
+// Service utama
+service ScheduleService {
+  rpc CreateSlot(CreateSlotRequest) returns (Empty);
+  rpc GetSlotsByUser(GetSlotsByUserRequest) returns (GetSlotsResponse);
+}
+
+// Kosong untuk response
+message Empty {}
