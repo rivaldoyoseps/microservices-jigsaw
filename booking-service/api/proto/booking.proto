@@ -1,0 +1,38 @@
+syntax= "proto3";
+
+package bookingpb;
+
+option go_package = "github.com/rivaldoyoseps/booking-service/api/proto_gen/bookingpb";
+
+service BookingService {
+    rpc CreateBooking(CreateBookingRequest) returns (BookingResponse);
+    rpc GetBookingByUser(GetBookingByUserRequest) returns(GetBookingsResponse);
+    rpc GetBookingDetail(GetBookingByDetailRequest) returns(BookingResponse);
+}
+
+message CreateBookingRequest {
+    string user_id = 1;
+    string schedule_id = 2;
+    string note = 3;
+
+}
+
+message BookingResponse {
+    string id = 1;
+    string user_id = 2;
+    string schedule_id = 3;
+    string note = 4;
+    string created_at = 5;
+}
+
+message GetBookingByUserRequest {
+    string user_id = 1;
+}
+
+message GetBookingByDetailRequest {
+    string id = 1;
+}
+
+message GetBookingsResponse {
+    repeated BookingResponse bookings = 1;
+}
